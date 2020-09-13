@@ -31,6 +31,9 @@ public class City {
     @SerializedName("weather")
     @Expose
     private java.util.List<Weather> weather = null;
+    @SerializedName("dt_txt")
+    @Expose
+    private String dtTxt;
 
     /**
      * No args constructor for use in serialization
@@ -48,8 +51,9 @@ public class City {
      * @param id
      * @param clouds
      * @param wind
+     * @param dtTxt
      */
-    public City(int id, String name, Coord coord, Main main, int dt, Wind wind, Rain rain, Clouds clouds, java.util.List<Weather> weather) {
+    public City(int id, String name, Coord coord, Main main, int dt, Wind wind, Rain rain, Clouds clouds, java.util.List<Weather> weather, String dtTxt) {
         super();
         this.id = id;
         this.name = name;
@@ -60,6 +64,7 @@ public class City {
         this.rain = rain;
         this.clouds = clouds;
         this.weather = weather;
+        this.dtTxt = dtTxt;
     }
 
     public int getId() {
@@ -132,5 +137,13 @@ public class City {
 
     public void setWeather(java.util.List<Weather> weather) {
         this.weather = weather;
+    }
+
+    public String getDtTxt() {
+        return dtTxt;
+    }
+
+    public void setDtTxt(String dtTxt) {
+        this.dtTxt = dtTxt;
     }
 }
