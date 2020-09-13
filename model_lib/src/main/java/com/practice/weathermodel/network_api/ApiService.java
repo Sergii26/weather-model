@@ -13,5 +13,5 @@ public interface ApiService {
     Single<Response> getCitiesWeatherWithinRectangle(@Query("bbox") String coordinates, @Query("units") String units, @Query("appid") String key);
 
     @GET("forecast")
-    Single<City> getCityWeatherById(@Query("id") String cityId, @Query("appid") String key);
+    Single<Response> getCityWeatherById(@Query("id") String cityId, @Query("units") String units, @Query("appid") String key);
 }

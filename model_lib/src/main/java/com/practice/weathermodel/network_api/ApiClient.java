@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient implements NetworkClient {
     public static final String API_KEY = "10ffe9e6913b2ac1529992c5618ca106";
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/";
+    private static final String UNIT_TYPE = "metric";
     private Retrofit retrofit = null;
     private final ApiService apiService;
 
@@ -27,11 +28,11 @@ public class ApiClient implements NetworkClient {
 
     @Override
     public Single<Response> getCitiesWeatherWithinRectangle(String coordinates) {
-        return apiService.getCitiesWeatherWithinRectangle(coordinates, "metric", API_KEY);
+        return apiService.getCitiesWeatherWithinRectangle(coordinates, UNIT_TYPE, API_KEY);
     }
 
     @Override
-    public Single<City> getCityWeatherById(String cityId) {
-        return apiService.getCityWeatherById(cityId, API_KEY);
+    public Single<Response> getCityWeatherById(String cityId) {
+        return apiService.getCityWeatherById(cityId, UNIT_TYPE, API_KEY);
     }
 }

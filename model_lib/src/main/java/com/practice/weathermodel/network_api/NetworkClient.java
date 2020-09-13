@@ -9,5 +9,5 @@ import io.reactivex.Single;
 public interface NetworkClient {
     Single<Response> getCitiesWeatherWithinRectangle(String coordinates);
 
-    Single<City> getCityWeatherById(String cityId);
+    Single<Response> getCityWeatherById(String cityId);
 }

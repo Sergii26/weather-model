@@ -34,13 +34,11 @@ public class City {
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public City() {
     }
 
     /**
-     *
      * @param dt
      * @param rain
      * @param coord
