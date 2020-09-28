@@ -6,9 +6,9 @@ import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
 public abstract class NetworkReceiver extends BroadcastReceiver {
-    protected final PublishSubject<Integer> connectivityChangeObservable = PublishSubject.create();
+    protected final PublishSubject<Integer> statusChangeObservable = PublishSubject.create();
 
-    public Observable<Integer> getConnectivityChangeObservable() {
-        return connectivityChangeObservable;
+    public Observable<Integer> getStatusChangeObservable() {
+        return statusChangeObservable;
     }
 }
