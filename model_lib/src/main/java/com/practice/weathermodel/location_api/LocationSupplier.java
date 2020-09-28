@@ -5,5 +5,5 @@ import android.location.Location;
 import io.reactivex.subjects.AsyncSubject;
 
 public interface LocationSupplier {
-    AsyncSubject<Location> getLastLocationObservable();
+    AsyncSubject<Result> getLastLocationObservable();
 }
