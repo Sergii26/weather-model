@@ -8,7 +8,7 @@ import android.net.ConnectivityManager;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
-public class NetworkConnectionReceiver extends BroadcastReceiver {
+public class NetworkConnectionReceiver extends BroadcastReceiver implements NetworkReceiver {
     private final PublishSubject<Integer> connectivityChangeObservable = PublishSubject.create();
 
     @Override
