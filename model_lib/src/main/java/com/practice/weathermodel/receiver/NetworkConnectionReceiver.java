@@ -1,6 +1,5 @@
 package com.practice.weathermodel.receiver;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -8,7 +7,7 @@ import android.net.ConnectivityManager;
 import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 
-public class NetworkConnectionReceiver extends BroadcastReceiver implements NetworkReceiver {
+public class NetworkConnectionReceiver extends NetworkReceiver {
     private final PublishSubject<Integer> connectivityChangeObservable = PublishSubject.create();
 
     @Override
