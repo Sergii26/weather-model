@@ -18,8 +18,12 @@ public class LocationClient implements LocationSupplier {
     private final OnSuccessListener<Location> listener = new OnSuccessListener<Location>() {
         @Override
         public void onSuccess(Location location) {
-            locationsSubject.onNext(location);
-            locationsSubject.onComplete();
+            if(location != null){
+                locationsSubject.onNext(location);
+                locationsSubject.onComplete();
+            } else {
+                locationsSubject.onError(new IllegalStateException("Location must not be null"));
+            }
         }
     };
 
