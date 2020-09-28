@@ -2,8 +2,8 @@ package com.practice.weathermodel.location_api;
 
 import android.location.Location;
 
-import io.reactivex.subjects.AsyncSubject;
+import io.reactivex.Observable;
 
 public interface LocationSupplier {
-    AsyncSubject<Result<Location>> getLastLocationObservable();
+    Observable<Result<Location>> getLastLocationObservable();
 }

@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import androidx.annotation.NonNull;
+import io.reactivex.Observable;
 import io.reactivex.subjects.AsyncSubject;
 
 public class LocationClient implements LocationSupplier {
@@ -45,7 +46,7 @@ public class LocationClient implements LocationSupplier {
         fusedLocationClient.getLastLocation().addOnSuccessListener(onSuccessListener).addOnFailureListener(onFailureListener);
     }
 
-    public AsyncSubject<Result<Location>> getLastLocationObservable() {
+    public Observable<Result<Location>> getLastLocationObservable() {
         getLastLocation();
         return locationsSubject;
     }
