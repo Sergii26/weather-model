@@ -14,12 +14,15 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.practice.weathermodel.logger.ILog;
+import com.practice.weathermodel.logger.Logger;
 
 import androidx.annotation.NonNull;
 import io.reactivex.Observable;
 import io.reactivex.subjects.AsyncSubject;
 
 public class LocationClient implements LocationSupplier {
+    private final ILog logger = Logger.withTag("MyLog");
     private final LocationManager locationManager;
     private final FusedLocationProviderClient fusedLocationClient;
     private final AsyncSubject<Result<Location>> locationsSubject = AsyncSubject.create();
@@ -33,12 +36,13 @@ public class LocationClient implements LocationSupplier {
     private final OnSuccessListener<Location> onSuccessListener = new OnSuccessListener<Location>() {
         @Override
         public void onSuccess(Location location) {
-            location = null;
+            Log.d("MyLog", "onSuccessListener ");
             if (location != null) {
-                getLastLocationByLocationManager();
-            } else {
-                locationsSubject.onNext(new Result<Location>(new Exception("Location must not be null")));
+                locationsSubject.onNext(new Result<>(location));
                 locationsSubject.onComplete();
+
+            } else {
+                getLastLocationByLocationManager();
             }
 
         }
@@ -46,24 +50,29 @@ public class LocationClient implements LocationSupplier {
     private final LocationListener listener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-            Log.d("LOGG", "onLocationChanged " + location);
-            locationsSubject.onNext(new Result<>(location));
-            locationsSubject.onComplete();
+            if(location != null){
+                Log.d("MyLog", "onLocationChanged " + location);
+                locationsSubject.onNext(new Result<>(location));
+                locationsSubject.onComplete();
+            } else {
+                locationsSubject.onNext(new Result<Location>(new Exception("Location must not be null")));
+                locationsSubject.onComplete();
+            }
         }
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
-            Log.d("LOGG", "onStatusChanged " + provider + ", sts " + status);
+            Log.d("MyLog", "onStatusChanged " + provider + ", sts " + status);
         }
 
         @Override
         public void onProviderEnabled(String provider) {
-            Log.d("LOGG", "onProviderEnabled " + provider);
+            Log.d("MyLog", "onProviderEnabled " + provider);
         }
 
         @Override
         public void onProviderDisabled(String provider) {
-            Log.d("LOGG", "onProviderDisabled " + provider);
+            Log.d("MyLog", "onProviderDisabled " + provider);
         }
     };
 
