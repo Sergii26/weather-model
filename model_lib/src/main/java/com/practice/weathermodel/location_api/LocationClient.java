@@ -33,6 +33,7 @@ public class LocationClient implements LocationSupplier {
     private final OnSuccessListener<Location> onSuccessListener = new OnSuccessListener<Location>() {
         @Override
         public void onSuccess(Location location) {
+            location = null;
             if (location != null) {
                 getLastLocationByLocationManager();
             } else {
